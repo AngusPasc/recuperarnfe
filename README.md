@@ -1,4 +1,6 @@
-# recuperarnfe
+# RecuperarNFe
+
+## Sobre
 
   * http://www.recuperarxml.com.br
 
@@ -8,4 +10,11 @@
   
   * Contribua com melhorias e manutenção criando pull requests (https://github.com/recuperarxml/recuperarxml-nfe/pulls) e issues (https://github.com/recuperarxml/recuperarxml-nfe/issues).
 
-  * Dependência: Componente ACBr (http://www.projetoacbr.com.br)
+## Como compilar
+
+  * Instalação do componente ACBr disponível no repositório svn://svn.code.sf.net/p/acbr/code/trunk2
+  
+  * Copiar os arquivos .dll da pasta "DLL" para "..\Windows\System32" ou "..\Windows\SysWOW64"
+
+  * Abrir o arquivo ..\Project\RecuperarNFe.dpr e compilar.
+  
