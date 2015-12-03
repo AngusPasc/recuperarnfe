@@ -5,27 +5,29 @@ interface
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.OleCtrls, Vcl.StdCtrls, Vcl.ExtCtrls,
-  Vcl.Menus, Vcl.ComCtrls, SHDocVw, MSHtml, UrlMon, WinInet,
+  Vcl.Menus, Vcl.ComCtrls, SHDocVw, MSHtml, UrlMon, WinInet, Vcl.Imaging.pngimage,
   (* ACBr *) ACBrUtil, pcnAuxiliar, ACBrDFeUtil, ACBrNFeConfiguracoes,
-  (* Projeto *) Metodos, HTMLtoXML;
+  (* Projeto *) Metodos, HTMLtoXML, dxGDIPlusClasses;
 
 type
   TFfGERARXML = class(TForm)
+    Memo2: TMemo;
+    WebBrowser: TWebBrowser;
+    Memo1: TMemo;
+    Panel1: TPanel;
+    Panel2: TPanel;
+    Panel3: TPanel;
     LabelChavedeAcesso: TLabel;
     lblStatus: TLabel;
+    ImageCaptcha: TImage;
+    Label4: TLabel;
     ProgressBar1: TProgressBar;
     edtChaveNFe: TEdit;
     EditCaptcha: TEdit;
-    Memo2: TMemo;
-    WebBrowser: TWebBrowser;
     BitBtnXML1: TButton;
-    BtClose: TButton;
-    Label2: TLabel;
-    Label3: TLabel;
-    ImageCaptcha: TImage;
-    Label4: TLabel;
-    Memo1: TMemo;
     ButtonNovaConsulta: TButton;
+    wbXMLResposta: TWebBrowser;
+    ImageRx: TImage;
     procedure FormShow(Sender: TObject);
     procedure BtCloseClick(Sender: TObject);
     procedure WebBrowserProgressChange(ASender: TObject; Progress, ProgressMax: Integer);
@@ -51,17 +53,15 @@ implementation
 procedure TFfGERARXML.FormShow(Sender: TObject);
 begin
    inherited;
-   DirXML := ExtractFileDrive(ExtractFilePath(ParamStr(0))) + '\XML\';
-   Label2.Caption := DirXML;
+   DirXML := GetTempDir;
    NovaConsulta;
 end;
 
 procedure TFfGERARXML.ButtonNovaConsultaClick(Sender: TObject);
 begin
    NovaConsulta;
-   edtChaveNFe.Clear;
-   EditCaptcha.Clear;
    DeleteIECache;
+   EditCaptcha.Clear;
    ProgressBar1.Position := 0;
    lblStatus.Caption := '';
 end;
@@ -69,6 +69,14 @@ end;
 procedure TFfGERARXML.BitBtnXML1Click(Sender: TObject);
 begin
    inherited;
+   if trim(edtChaveNFe.Text) = '' then
+   begin
+      MessageDlg('Chave de acesso não informado!', mtError, [mbok], 0);
+      if edtChaveNFe.CanFocus then
+         edtChaveNFe.SetFocus;
+      Exit;
+   end;
+
    if trim(EditCaptcha.Text) = '' then
    begin
       MessageDlg('Digite o valor da imagem!', mtError, [mbok], 0);
@@ -100,7 +108,7 @@ procedure TFfGERARXML.WebBrowserDocumentComplete(ASender: TObject; const pDisp: 
 var
   i: Integer;
   Source: AnsiString;
-  dest, PathImage: string;
+  dest, XMLGerado, PathImage: string;
   textoNFe: IHTMLDocument2;
 begin
    Application.ProcessMessages;
@@ -174,11 +182,12 @@ begin
          if not(FindText(Memo2, 'NF-e INEXISTENTE na base nacional')) then
          begin
             try
-               if FileExists(GerarXML(Memo2.Lines.Text, DirXML)) then
-                  lblStatus.Caption := 'Importado'
-               else lblStatus.Caption := 'Não Importado, tente novamente';
+               XMLGerado := GerarXML(Memo2.Lines.Text, DirXML);
+               wbXMLResposta.Navigate(XMLGerado);
+               lblStatus.Caption := 'Concluído';
                ProgressBar1.Position := 0;
                WebBrowser.Stop;
+               DeleteFile(XMLGerado);
             except
                raise
             end;

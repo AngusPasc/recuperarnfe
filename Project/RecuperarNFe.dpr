@@ -14,7 +14,6 @@ begin
   Application.Initialize;
   Application.MainFormOnTaskbar := True;
   Application.Title := 'RecuperarNFe';
-  TStyleManager.TrySetStyle('Aqua Light Slate');
   Application.CreateForm(TFfGERARXML, FfGERARXML);
   Application.Run;
 end.
