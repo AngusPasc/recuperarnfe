@@ -7,7 +7,7 @@ uses
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.OleCtrls, Vcl.StdCtrls, Vcl.ExtCtrls,
   Vcl.Menus, Vcl.ComCtrls, SHDocVw, MSHtml, UrlMon, WinInet, Vcl.Imaging.pngimage,
   (* ACBr *) ACBrUtil, pcnAuxiliar, ACBrDFeUtil, ACBrNFeConfiguracoes,
-  (* Projeto *) Metodos, HTMLtoXML, dxGDIPlusClasses;
+  (* Projeto *) Metodos, HTMLtoXML;
 
 type
   TFfGERARXML = class(TForm)
