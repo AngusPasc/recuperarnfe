@@ -9,8 +9,8 @@
 RequestExecutionLevel admin # Privilégios de usuário para instalação
 XPStyle on
 SetOverwrite on 
-ShowInstDetails nevershow 
-ShowUninstDetails nevershow 
+ShowInstDetails show 
+ShowUninstDetails show 
 
 Name "RecuperarNFe" 
 OutFile "InstaladorRecuperarNFe.exe"
@@ -38,6 +38,7 @@ Clique em Próximo para continuar."
 !define MUI_HEADERIMAGE_RIGHT
 !define MUI_ICON "..\Images\RecuperarNFe_Icon.ico"
 !define MUI_WELCOMEFINISHPAGE_BITMAP "..\Images\Front.bmp"
+!define MUI_FINISHPAGE_NOAUTOCLOSE
 
 # desinstalador
 !define MUI_UNHEADERIMAGE
@@ -46,10 +47,13 @@ Clique em Próximo para continuar."
 !define MUI_UNICON "..\Images\RecuperarNFe_Icon.ico"
 !define MUI_UNWELCOMEFINISHPAGE_BITMAP "..\Images\Front.bmp"
 
+!insertmacro MUI_PAGE_WELCOME
+!insertmacro MUI_PAGE_DIRECTORY
 !insertmacro MUI_PAGE_INSTFILES
+!insertmacro MUI_PAGE_FINISH
 !define MUI_FINISHPAGE_RUN "$INSTDIR\RecuperarNFe.exe"
 !define MUI_FINISHPAGE_RUN_TEXT "Iniciar o RecuperarNFe?"
-!insertmacro MUI_PAGE_FINISH
+
 
 # desinstalador
 !insertmacro MUI_UNPAGE_CONFIRM
@@ -78,7 +82,6 @@ FunctionEnd
 
 Section "Instalar" SecInstalar
 
-    SetDetailsPrint none
     SetOutPath "$SYSDIR"
 
     ${If} ${FileExists} "$SYSDIR\ssleay32.dll"
