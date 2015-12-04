@@ -2,11 +2,9 @@
 
 ## Sobre
 
-  * http://www.recuperarxml.com.br
-
-  * Recuperação dos arquivos XML da NF-e (Nota Fiscal Eletrônica).
+  * Recuperação dos arquivos XML da NF-e (Nota Fiscal Eletrônica) pelo site da Receita Federal.
   
-  * Compilado com Delphi XE2. Compatível com Delphi 7 até Delphi 10 Seattle.
+  * Compilado com Delphi XE2.
   
   * Contribua com melhorias e manutenção criando pull requests (https://github.com/recuperarxml/recuperarxml-nfe/pulls) e issues (https://github.com/recuperarxml/recuperarxml-nfe/issues).
 
