@@ -8,7 +8,7 @@
   
   * Contribua com melhorias e manutenção criando pull requests (https://github.com/RecuperarXML/recuperarnfe/pulls) e issues (https://github.com/RecuperarXML/recuperarnfe/issues).
 
-## Como compilar
+## Compilação
 
   * Instalação do componente ACBr disponível no repositório svn://svn.code.sf.net/p/acbr/code/trunk2
   
@@ -16,3 +16,12 @@
 
   * Abrir o arquivo ..\Project\RecuperarNFe.dpr e compilar.
   
+
+## Instalador
+
+  * [InstaladorRecuperarNFe.exe](https://github.com/RecuperarXML/recuperarnfe/blob/master/Instalador/InstaladorRecuperarNFe.exe)
+
+
+## Software
+
+  * [RecuperarNFe.exe](https://github.com/RecuperarXML/recuperarnfe/blob/master/Bin/RecuperarNFe.exe)
