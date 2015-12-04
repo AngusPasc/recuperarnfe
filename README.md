@@ -16,10 +16,14 @@
 
   * Abrir o arquivo ..\Project\RecuperarNFe.dpr e compilar.
 
-## Instalador
+## Executáveis
 
   * [InstaladorRecuperarNFe.exe](https://github.com/RecuperarXML/recuperarnfe/raw/master/Instalador/InstaladorRecuperarNFe.exe)
-
-## Software
-
   * [RecuperarNFe.exe](https://github.com/RecuperarXML/recuperarnfe/raw/master/Bin/RecuperarNFe.exe)
+
+
+## Screenshots
+
+![instalador](Screenshots/Instalador.png)
+
+![software](Screenshots/Software.png)
