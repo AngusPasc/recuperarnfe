@@ -15,13 +15,11 @@
   * Copiar os arquivos .dll da pasta "DLL" para "..\Windows\System32" ou "..\Windows\SysWOW64"
 
   * Abrir o arquivo ..\Project\RecuperarNFe.dpr e compilar.
-  
 
 ## Instalador
 
-  * [InstaladorRecuperarNFe.exe](https://github.com/RecuperarXML/recuperarnfe/blob/master/Instalador/InstaladorRecuperarNFe.exe)
-
+  * [InstaladorRecuperarNFe.exe](https://github.com/RecuperarXML/recuperarnfe/raw/master/Instalador/InstaladorRecuperarNFe.exe)
 
 ## Software
 
-  * [RecuperarNFe.exe](https://github.com/RecuperarXML/recuperarnfe/blob/master/Bin/RecuperarNFe.exe)
+  * [RecuperarNFe.exe](https://github.com/RecuperarXML/recuperarnfe/raw/master/Bin/RecuperarNFe.exe)
