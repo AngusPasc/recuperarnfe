@@ -7,12 +7,11 @@ uses
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.OleCtrls, Vcl.StdCtrls, Vcl.ExtCtrls,
   Vcl.Menus, Vcl.ComCtrls, SHDocVw, MSHtml, UrlMon, WinInet, Vcl.Imaging.pngimage,
   (* ACBr *) ACBrUtil, pcnAuxiliar, ACBrDFeUtil, ACBrNFeConfiguracoes,
-  (* Projeto *) Metodos, HTMLtoXML, dxGDIPlusClasses;
+  (* Projeto *) Metodos, HTMLtoXML;
 
 type
   TFfGERARXML = class(TForm)
     Memo2: TMemo;
-    WebBrowser: TWebBrowser;
     Memo1: TMemo;
     Panel1: TPanel;
     Panel2: TPanel;
@@ -26,8 +25,11 @@ type
     EditCaptcha: TEdit;
     BitBtnXML1: TButton;
     ButtonNovaConsulta: TButton;
+    WebBrowser: TWebBrowser;
     wbXMLResposta: TWebBrowser;
-    ImageRx: TImage;
+    Label1: TLabel;
+    Label2: TLabel;
+    lbl3: TLabel;
     procedure FormShow(Sender: TObject);
     procedure BtCloseClick(Sender: TObject);
     procedure WebBrowserProgressChange(ASender: TObject; Progress, ProgressMax: Integer);
@@ -36,6 +38,7 @@ type
     procedure NovaConsulta;
     procedure BitBtnXML1Click(Sender: TObject);
     procedure ButtonNovaConsultaClick(Sender: TObject);
+    procedure lbl3Click(Sender: TObject);
   private
     { Private declarations }
   public
@@ -54,7 +57,11 @@ procedure TFfGERARXML.FormShow(Sender: TObject);
 begin
    inherited;
    DirXML := GetTempDir;
-   NovaConsulta;
+end;
+
+procedure TFfGERARXML.lbl3Click(Sender: TObject);
+begin
+   HlinkNavigateString(nil,'https://github.com/recuperarxml/recuperarnfe');
 end;
 
 procedure TFfGERARXML.ButtonNovaConsultaClick(Sender: TObject);
