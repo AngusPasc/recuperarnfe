@@ -6,7 +6,7 @@
   
   * Compilado com Delphi XE2.
   
-  * Contribua com melhorias e manutenção criando pull requests (https://github.com/recuperarxml/recuperarxml-nfe/pulls) e issues (https://github.com/recuperarxml/recuperarxml-nfe/issues).
+  * Contribua com melhorias e manutenção criando pull requests (https://github.com/RecuperarXML/recuperarnfe/pulls) e issues (https://github.com/RecuperarXML/recuperarnfe/issues).
 
 ## Como compilar
 
