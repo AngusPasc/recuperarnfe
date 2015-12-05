@@ -69,9 +69,6 @@ object FfGERARXML: TFfGERARXML
     Height = 388
     Align = alClient
     TabOrder = 3
-    ExplicitTop = 105
-    ExplicitWidth = 469
-    ExplicitHeight = 395
     object wbXMLResposta: TWebBrowser
       Left = 1
       Top = 1
@@ -98,8 +95,6 @@ object FfGERARXML: TFfGERARXML
     Color = clWindow
     ParentBackground = False
     TabOrder = 4
-    ExplicitTop = 105
-    ExplicitHeight = 395
     object LabelChavedeAcesso: TLabel
       Left = 16
       Top = 15

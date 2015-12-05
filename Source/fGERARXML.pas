@@ -5,11 +5,23 @@ interface
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.OleCtrls, Vcl.StdCtrls, Vcl.ExtCtrls,
-  Vcl.Menus, Vcl.ComCtrls, SHDocVw, MSHtml, UrlMon, WinInet, Vcl.Imaging.pngimage,
+  Vcl.Menus, Vcl.ComCtrls, Vcl.Imaging.pngimage,
+  (* Web libs *) SHDocVw, MSHtml, UrlMon, WinInet, ActiveX,
   (* ACBr *) ACBrUtil, pcnAuxiliar, ACBrDFeUtil, ACBrNFeConfiguracoes,
   (* Projeto *) Metodos, HTMLtoXML;
 
 type
+
+  TWebBrowser = class (SHDocVw.TWebbrowser, IDispatch)
+  private
+    FUserAgent: string;
+    procedure SetUserAgent (const Value: string);
+    function Invoke(DispID: Integer; const IID: TGUID; LocaleID: Integer; Flags: Word; var Params; VarResult, ExcepInfo, ArgErr: Pointer): HRESULT; stdcall;
+  public
+    property UserAgent: string read FUserAgent write SetUserAgent;
+    constructor Create(AOwner: TComponent); override;
+  end;
+
   TFfGERARXML = class(TForm)
     Memo2: TMemo;
     Memo1: TMemo;
@@ -39,6 +51,7 @@ type
     procedure BitBtnXML1Click(Sender: TObject);
     procedure ButtonNovaConsultaClick(Sender: TObject);
     procedure lbl3Click(Sender: TObject);
+    function SetRandomUserAgent: String;
   private
     { Private declarations }
   public
@@ -47,17 +60,46 @@ type
 
 var
   FfGERARXML: TForm;
-  DirXML: String;
+
+const
+  DISPID_AMBIENT_USERAGENT = -5513;
 
 implementation
 
 {$R *.dfm}
+{$R UAC.res}
 
-procedure TFfGERARXML.FormShow(Sender: TObject);
+{ TWebBrowser }
+
+constructor TWebBrowser.Create(AOwner: TComponent);
 begin
-   inherited;
-   DirXML := GetTempDir;
+  inherited Create(AOwner);
+  FUserAgent:='';
 end;
+
+function TWebBrowser.Invoke(DispID: Integer; const IID: TGUID;
+  LocaleID: Integer; Flags: Word; var Params; VarResult, ExcepInfo,
+  ArgErr: Pointer): HRESULT;
+begin
+  if (FUserAgent <> '') and (Flags and DISPATCH_PROPERTYGET <> 0) and Assigned(VarResult) and (DispId=DISPID_AMBIENT_USERAGENT) then
+  begin
+    POleVariant(VarResult)^:= FUserAgent+#13#10;
+    Result := S_OK;
+  end
+  else
+  Result := inherited Invoke(DispID, IID, LocaleID, Flags, Params, VarResult, ExcepInfo, ArgErr);
+end;
+
+procedure TWebBrowser.SetUserAgent(const Value: string);
+var
+  Control: IOleControl;
+begin
+  FUserAgent := Value;
+  if DefaultInterface.QueryInterface(IOleControl, Control) = 0 then
+    Control.OnAmbientPropertyChange(DISPID_AMBIENT_USERAGENT);
+end;
+
+{ TFfGERARXML }
 
 procedure TFfGERARXML.lbl3Click(Sender: TObject);
 begin
@@ -66,11 +108,11 @@ end;
 
 procedure TFfGERARXML.ButtonNovaConsultaClick(Sender: TObject);
 begin
-   NovaConsulta;
    DeleteIECache;
    EditCaptcha.Clear;
    ProgressBar1.Position := 0;
    lblStatus.Caption := '';
+   NovaConsulta;
 end;
 
 procedure TFfGERARXML.BitBtnXML1Click(Sender: TObject);
@@ -189,7 +231,7 @@ begin
          if not(FindText(Memo2, 'NF-e INEXISTENTE na base nacional')) then
          begin
             try
-               XMLGerado := GerarXML(Memo2.Lines.Text, DirXML);
+               XMLGerado := GerarXML(Memo2.Lines.Text, GetTempDir);
                wbXMLResposta.Navigate(XMLGerado);
                lblStatus.Caption := 'Concluído';
                ProgressBar1.Position := 0;
@@ -260,6 +302,13 @@ begin
    FindCloseUrlCache(hCacheDir)
 end;
 
+procedure TFfGERARXML.FormShow(Sender: TObject);
+begin
+   WebBrowser.UserAgent := SetRandomUserAgent;
+   WebBrowser.HandleNeeded;
+   WebBrowser.Navigate('about:blank');
+end;
+
 procedure TFfGERARXML.NovaConsulta;
 begin
    if TemConexaoInternet('http://www.nfe.fazenda.gov.br') then
@@ -267,12 +316,26 @@ begin
       DeleteIECache;
       Memo2.Lines.Clear;
       WebBrowser.Silent := True;
+      WebBrowser.UserAgent := SetRandomUserAgent;
       WebBrowser.Navigate('http://www.nfe.fazenda.gov.br/portal/consulta.aspx?tipoConsulta=completa&tipoConteudo=XbSeqxE8pl8=');
    end
    else
    begin
       ShowMessage('O Portal da NF-e está fora do ar. Tente novamente mais tarde!');
       Close;
+   end;
+end;
+
+function TFfGERARXML.SetRandomUserAgent: String;
+var i: Integer;
+begin
+   i := Random(5);
+   case i of
+     0: Result := 'Mozilla/5.0 (compatible, MSIE 11, Windows NT 6.3; Trident/7.0; rv:11.0) like Gecko';
+     1: Result := 'Mozilla/5.0 (Windows NT 6.3; Trident/7.0; rv:11.0) like Gecko';
+     2: Result := 'Mozilla/5.0 (compatible; MSIE 9.0; Windows NT 6.1; Trident/5.0) like Gecko';
+     3: Result := 'Mozilla/5.0 (Windows NT 6.2; Trident/7.0; rv:11.0) like Gecko';
+     else Result := 'Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1)';
    end;
 end;
 
