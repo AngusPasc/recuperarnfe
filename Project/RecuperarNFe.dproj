@@ -46,8 +46,12 @@
 			<Base>true</Base>
 		</PropertyGroup>
 		<PropertyGroup Condition="'$(Base)'!=''">
+			<VerInfo_Keys>CompanyName=Recuperar NFe;FileDescription=https://github.com/recuperarxml/recuperarnfe;FileVersion=1.0.0.0;InternalName=RecuperarNFe;LegalCopyright=Recuperar NFe;LegalTrademarks=Recuperar NFe;OriginalFilename=RecuperarNFe.exe;ProductName=RecuperarNFe;ProductVersion=1.0.0.0;Comments=Recuperar arquivo XML da NF-e</VerInfo_Keys>
+			<Manifest_File>UAC.manifest</Manifest_File>
+			<VerInfo_IncludeVerInfo>true</VerInfo_IncludeVerInfo>
+			<VerInfo_Locale>1046</VerInfo_Locale>
 			<DCC_Namespace>System;Xml;Data;Datasnap;Web;Soap;Vcl;Vcl.Imaging;Vcl.Touch;Vcl.Samples;Vcl.Shell;$(DCC_Namespace)</DCC_Namespace>
-			<Icon_MainIcon>$(BDS)\bin\delphi_PROJECTICON.ico</Icon_MainIcon>
+			<Icon_MainIcon>..\Images\RecuperarNFe_Icon.ico</Icon_MainIcon>
 			<DCC_UsePackage>AnyDAC_PhysADS_D16;AnyDAC_Comp_D16;fmx;AnyDAC_PhysPg_D16;AnyDAC_PhysDb2_D16;IndySystem;AnyDAC_Phys_D16;DBXInterBaseDriver;DataSnapClient;DataSnapCommon;DataSnapServer;AnyDAC_PhysMSSQL_D16;DataSnapProviderClient;DbxCommonDriver;dbxcds;AnyDAC_PhysTDBX_D16;DBXOracleDriver;CustomIPTransport;AnyDAC_PhysOracle_D16;dsnap;AnyDAC_PhysSQLITE_D16;fmxase;IndyCore;AnyDAC_PhysMySQL_D16;inetdbxpress;AnyDAC_PhysODBC_D16;IPIndyImpl;bindcompfmx;rtl;dbrtl;DbxClientDriver;bindcomp;inetdb;AnyDAC_PhysASA_D16;xmlrtl;ibxpress;IndyProtocols;DBXMySQLDriver;bindengine;soaprtl;DBXInformixDriver;AnyDAC_ComI_D16;DBXFirebirdDriver;inet;fmxobj;AnyDAC_PhysIB_D16;AnyDAC_PhysMSAcc_D16;DBXSybaseASADriver;fmxdae;AnyDAC_GUIxForms_D16;dbexpress;DataSnapIndy10ServerTransport;$(DCC_UsePackage)</DCC_UsePackage>
 		</PropertyGroup>
 		<PropertyGroup Condition="'$(Base_Win64)'!=''">
@@ -56,13 +60,10 @@
 		<PropertyGroup Condition="'$(Base_Win32)'!=''">
 			<DCC_ExeOutput>..\Bin</DCC_ExeOutput>
 			<DCC_DcuOutput>..\DCU\</DCC_DcuOutput>
-			<Manifest_File>..\..\..\Projeto\UAC.manifest</Manifest_File>
-			<Icon_MainIcon>..\Images\RecuperarNFe_Icon.ico</Icon_MainIcon>
 			<DCC_UsePackage>RtmRxBDE160;ACBrDiversos;ACBrTCP;TeeDB;vclib;inetdbbde;Rave100VCL;DBXSybaseASEDriver;vclimg;QR5RunDXE2;fmi;RtmRxCtl160;vcldb;vcldsnap;DBXDb2Driver;Intraweb_120_160;vclribbon;frxe16;ACBr_SPED;ACBr_MDFe;vcl;CloudService;DBXMSSQLDriver;RtmRxDB160;FmxTeeUI;CodeSiteExpressPkg;ACBr_NFe2;ACBr_Boleto;ACBr_Sintegra;webdsnap;ACBr_NFSe;ACBr_LFD;adortl;ACBrNFeDanfeRVCodeBase;ACBrOpenSSL;ACBr_PAF;vcldbx;ACBrCapicom;ACBr_BoletoFC_FR;frx16;ACBrSerial;Tee;DBXOdbcDriver;ACBr_CTe;svnui;frxDB16;intrawebdb_120_160;fs16;vclactnband;FMXTee;TeeUI;ACBrComum;synapse;vclie;vcltouch;ACBr_TEFD;websnap;ACBrNFeDanfeRV;ACBrNFSeDanfseFRpkg;VclSmp;fsDB16;DataSnapConnectors;dsnapcon;PCN2;ACBrNFeDanfeFRpkg;vclx;svn;ACBrNFeDanfeQRpkg;bdertl;ACBrCTeDacteFRpkg;$(DCC_UsePackage)</DCC_UsePackage>
 			<VerInfo_IncludeVerInfo>true</VerInfo_IncludeVerInfo>
 			<DCC_Namespace>Winapi;System.Win;Data.Win;Datasnap.Win;Web.Win;Soap.Win;Xml.Win;Bde;$(DCC_Namespace)</DCC_Namespace>
 			<VerInfo_Locale>1033</VerInfo_Locale>
-			<VerInfo_Keys>CompanyName=RecuperarXML;FileDescription=http://www.recuperarxml.com.br;FileVersion=1.0.0.0;InternalName=RecuperarNFe;LegalCopyright=RecuperarXML;LegalTrademarks=RecuperarXML;OriginalFilename=RecuperarNFe.exe;ProductName=RecuperarNFe;ProductVersion=1.0.0.0;Comments=Recuperar arquivo XML da NF-e - http://www.recuperarxml.com.br</VerInfo_Keys>
 		</PropertyGroup>
 		<PropertyGroup Condition="'$(Cfg_1)'!=''">
 			<DCC_Define>DEBUG;$(DCC_Define)</DCC_Define>
@@ -72,8 +73,6 @@
 			<DCC_RemoteDebug>true</DCC_RemoteDebug>
 		</PropertyGroup>
 		<PropertyGroup Condition="'$(Cfg_1_Win32)'!=''">
-			<Icon_MainIcon>..\Images\RecuperarNFe_Icon.ico</Icon_MainIcon>
-			<Manifest_File>None</Manifest_File>
 			<VerInfo_IncludeVerInfo>true</VerInfo_IncludeVerInfo>
 			<VerInfo_Locale>1033</VerInfo_Locale>
 			<DCC_RemoteDebug>false</DCC_RemoteDebug>
@@ -85,7 +84,7 @@
 			<DCC_DebugInformation>false</DCC_DebugInformation>
 		</PropertyGroup>
 		<PropertyGroup Condition="'$(Cfg_2_Win32)'!=''">
-			<Icon_MainIcon>..\Images\RecuperarNFe_Icon.ico</Icon_MainIcon>
+			<VerInfo_Keys>CompanyName=Recuperar NFe;FileDescription=https://github.com/recuperarxml/recuperarnfe;FileVersion=1.0.0.0;InternalName=RecuperarNFe;LegalCopyright=Recuperar NFe;LegalTrademarks=Recuperar NFe;OriginalFilename=RecuperarNFe.exe;ProductName=RecuperarNFe;ProductVersion=1.0.0.0;Comments=Recuperar arquivo XML da NF-e</VerInfo_Keys>
 			<VerInfo_IncludeVerInfo>true</VerInfo_IncludeVerInfo>
 			<VerInfo_Locale>1033</VerInfo_Locale>
 		</PropertyGroup>
@@ -149,8 +148,6 @@
 					</VersionInfoKeys>
 					<Excluded_Packages>
 						<Excluded_Packages Name="$(BDSBIN)\dclbindcompvcl160.bpl">Embarcadero LiveBindings Components VCL</Excluded_Packages>
-						<Excluded_Packages Name="$(BDSBIN)\bcboffice2k160.bpl">Embarcadero C++Builder Office 2000 Servers Package</Excluded_Packages>
-						<Excluded_Packages Name="$(BDSBIN)\bcbofficexp160.bpl">Embarcadero C++Builder Office XP Servers Package</Excluded_Packages>
 						<Excluded_Packages Name="$(BDSBIN)\dcloffice2k160.bpl">Microsoft Office 2000 Sample Automation Server Wrapper Components</Excluded_Packages>
 						<Excluded_Packages Name="$(BDSBIN)\dclofficexp160.bpl">Microsoft Office XP Sample Automation Server Wrapper Components</Excluded_Packages>
 					</Excluded_Packages>
