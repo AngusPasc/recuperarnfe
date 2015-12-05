@@ -179,7 +179,7 @@ object FfGERARXML: TFfGERARXML
       Top = 347
       Width = 373
       Height = 27
-      TabOrder = 0
+      TabOrder = 4
     end
     object edtChaveNFe: TEdit
       Left = 16
@@ -195,7 +195,7 @@ object FfGERARXML: TFfGERARXML
       Font.Style = []
       HideSelection = False
       ParentFont = False
-      TabOrder = 1
+      TabOrder = 0
     end
     object EditCaptcha: TEdit
       Left = 312
@@ -239,7 +239,7 @@ object FfGERARXML: TFfGERARXML
       Font.Name = 'Tahoma'
       Font.Style = []
       ParentFont = False
-      TabOrder = 4
+      TabOrder = 1
       OnClick = ButtonNovaConsultaClick
     end
   end
